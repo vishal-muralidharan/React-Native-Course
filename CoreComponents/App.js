@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Button, Image, Text, Pressable, ScrollView, Modal } from 'react-native';
+import { View, Button, Image, Text, Pressable, ScrollView, Modal, StatusBar } from 'react-native';
 const logoImg = require("./assets/adaptive-icon.png");
 
 export default function App() {
@@ -7,6 +7,7 @@ export default function App() {
 
   return (
     <View style={{ flex: 1, backgroundColor: 'plum', padding: 60 }}>
+      <StatusBar backgroundColor="lightgreen" barStyle="light-content" hidden />
       <Button
         title="Press"
         onPress={() => setIsModalVisible(true)}
