@@ -13,7 +13,12 @@ export default function App() {
         color="midnightblue"
       />
 
-      <Modal visible={isModalVisible} animationType="slide">
+      <Modal
+        visible={isModalVisible}
+        onRequestClose={() => setIsModalVisible(false)}
+        animationType="slide"
+        presentationStyle="pageSheet"
+      >
         <View style={{ flex: 1, backgroundColor: 'lightblue', padding: 60 }}>
           <Text>Modal content</Text>
           <Button
