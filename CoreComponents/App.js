@@ -1,15 +1,28 @@
-import { View, Button, Image, Text, Pressable, ScrollView } from 'react-native';
+import { useState } from 'react';
+import { View, Button, Image, Text, Pressable, ScrollView, Modal } from 'react-native';
 const logoImg = require("./assets/adaptive-icon.png");
 
 export default function App() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   return (
     <View style={{ flex: 1, backgroundColor: 'plum', padding: 60 }}>
       <Button
         title="Press"
-        onPress={() => console.log("Button pressed")}
+        onPress={() => setIsModalVisible(true)}
         color="midnightblue"
-        disabled
       />
+
+      <Modal visible={isModalVisible} animationType="slide">
+        <View style={{ flex: 1, backgroundColor: 'lightblue', padding: 60 }}>
+          <Text>Modal content</Text>
+          <Button
+            title="Close"
+            color="midnightblue"
+            onPress={() => setIsModalVisible(false)}
+          />
+        </View>
+      </Modal>
 
       <ScrollView style={{ marginTop: 16 }}>
         <Pressable onPress={() => console.log("Image pressed")}>
