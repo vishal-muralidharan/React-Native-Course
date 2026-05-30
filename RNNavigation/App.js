@@ -12,8 +12,32 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} initialParams={{ name: 'Guest' }} />
-        <Stack.Screen name="About" component={AboutScreen} initialParams={{ name: 'Guest' }} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          initialParams={{ name: 'Guest' }}
+          options={{
+            title: 'Welcome Home',
+            headerStyle: {
+              backgroundColor: '#6a51ae',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen
+          name="About"
+          component={AboutScreen}
+          initialParams={{ name: 'Guest' }}
+          options={{
+            title: 'About',
+            headerStyle: {
+              backgroundColor: '#6a51ae',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
