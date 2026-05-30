@@ -1,38 +1,16 @@
-import "./polyfill";
-import "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import DashboardScreen from "./screens/DashboardScreen";
-import SettingsScreen from "./screens/SettingsScreen";
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator()
 
 export default function App() {
-  return (
+  return(
     <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen 
-          name="Dashboard" 
-          component={DashboardScreen} 
-          options={{
-            title: "My dashboard",
-            drawerLabel: "Dashboard label",
-            drawerActiveTintColor: "#333",
-            drawerActiveBackgroundColor: "lightblue",
-            drawerContentStyle: {
-              backgroundColor: "#c6cbef",
-            },
-          }}
-        />
-        <Drawer.Screen 
-          name="Settings" 
-          component={SettingsScreen} 
-          options={{
-            title: "App Settings", 
-            drawerLabel: "Preferences" 
-          }}
-        />
-      </Drawer.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen />
+        <Tab.Screen />
+        <Tab.Screen />
+      </Tab.Navigator>
     </NavigationContainer>
-  );
+  )
 }
