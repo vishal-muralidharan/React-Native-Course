@@ -6,7 +6,15 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TextInput style={styles.input} value={name} onChangeText={setName} />
+      <TextInput
+        style={styles.input}
+        value={name}
+        onChangeText={setName}
+        placeholder="email@example.com"
+        autoCorrect={false}
+        autoCapitalize="none"
+        keyboardType="twitter"
+      />
       <Text style={styles.text}>My name is {name}</Text>
     </SafeAreaView>
   );
