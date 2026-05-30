@@ -6,6 +6,8 @@ import {
   FlatList,
   StyleSheet,
   ActivityIndicator,
+  TextInput,
+  Pressable,
 } from 'react-native';
 import { useEffect, useState } from 'react';
 
@@ -14,6 +16,9 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState('');
+  const [postTitle, setPostTitle] = useState('');
+  const [postBody, setPostBody] = useState('');
+  const [isPosting, setIsPosting] = useState(false);
 
   const fetchData = async (limit = 10, { showLoader = true } = {}) => {
     try {
@@ -39,6 +44,37 @@ export default function App() {
     setRefreshing(false);
   };
 
+  const handlePost = async () => {
+    if (!postTitle.trim() || !postBody.trim()) {
+      setError('Title and body are required');
+      return;
+    }
+
+    try {
+      setIsPosting(true);
+      setError('');
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: postTitle.trim(),
+          body: postBody.trim(),
+          userId: 1,
+        }),
+      });
+      const newPost = await response.json();
+      setPostList((previous) => [newPost, ...previous]);
+      setPostTitle('');
+      setPostBody('');
+    } catch (postError) {
+      setError('Failed to create post');
+    } finally {
+      setIsPosting(false);
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -56,6 +92,26 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Post title"
+          value={postTitle}
+          onChangeText={setPostTitle}
+        />
+        <TextInput
+          style={[styles.input, styles.bodyInput]}
+          placeholder="Post body"
+          value={postBody}
+          onChangeText={setPostBody}
+          multiline
+        />
+        <Pressable onPress={handlePost} disabled={isPosting}>
+          <Text style={styles.linkText}>
+            {isPosting ? 'Posting...' : 'Add Post'}
+          </Text>
+        </Pressable>
+      </View>
       <View style={styles.listContainer}>
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
         <FlatList
@@ -98,6 +154,34 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
     paddingHorizontal: 16,
+  },
+  inputContainer: {
+    paddingHorizontal: 16,
+    paddingBottom: 12,
+    paddingTop: 12,
+    marginHorizontal: 16,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: '#cfcfcf',
+    backgroundColor: 'white',
+  },
+  input: {
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 10,
+    backgroundColor: 'white',
+  },
+  bodyInput: {
+    minHeight: 40,
+    textAlignVertical: 'top',
+  },
+  linkText: {
+    color: '#1e66f5',
+    textAlign: 'center',
+    paddingVertical: 6,
   },
   card: {
     backgroundColor: 'white',
