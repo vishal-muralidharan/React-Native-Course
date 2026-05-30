@@ -1,26 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, StatusBar as RNStatusBar, FlatList } from 'react-native';
-import pokemonList from './data.json';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar as RNStatusBar, SectionList } from 'react-native';
+import groupedPokemonList from './grouped-data.json';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        data={pokemonList}
+      <SectionList
+        sections={groupedPokemonList}
         style={styles.scrollView}
-        ListHeaderComponent={<Text style={styles.headerText}>Pokemon List</Text>}
         renderItem={({ item }) => {
           return (
             <View style={styles.card}>
-              <Text style={styles.cardText}>{item.type}</Text>
-              <Text style={styles.cardText}>{item.name}</Text>
+              <Text style={styles.cardText}>{item}</Text>
             </View>
           );
         }}
-        keyExtractor={(item) => item.id.toString()}
-        ItemSeparatorComponent={<View style={{ height: 16 }} />}
-        ListEmptyComponent={<Text style={styles.cardText}>No Pokemon Found</Text>}
-        ListFooterComponent={<Text style={styles.footerText}>End of List</Text>}
+        renderSectionHeader={({ section }) => (
+          <Text style={styles.sectionHeaderText}>{section.type}</Text>
+        )}
+        ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
+        SectionSeparatorComponent={() => <View style={{ height: 16 }} />}
       />
       <StatusBar style="auto" />
     </SafeAreaView>
@@ -57,5 +56,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 16,
     marginBottom: 16,
+  },
+  sectionHeaderText: {
+    backgroundColor: '#f5f5f5',
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
