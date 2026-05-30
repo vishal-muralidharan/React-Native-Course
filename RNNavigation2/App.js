@@ -1,4 +1,4 @@
-import "./polyfill"; // Keep this to prevent the DOMException crash!
+import "./polyfill";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -11,8 +11,22 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator>
-        <Drawer.Screen name="Dashboard" component={DashboardScreen} />
-        <Drawer.Screen name="Settings" component={SettingsScreen} />
+        <Drawer.Screen 
+          name="Dashboard" 
+          component={DashboardScreen} 
+          options={{
+            title: "My Dashboard",
+            drawerLabel: "Home Menu"
+          }}
+        />
+        <Drawer.Screen 
+          name="Settings" 
+          component={SettingsScreen} 
+          options={{
+            title: "App Settings", 
+            drawerLabel: "Preferences" 
+          }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
