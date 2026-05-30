@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import { Ionicons } from '@expo/vector-icons'; 
+
 import CourseListScreen from './screens/CourseListScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SettingsScreen from './screens/SettingsScreen';
@@ -26,9 +26,10 @@ export default function App() {
           component={ProfileScreen} 
           options={{
             tabBarLabel: "My profile",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="person" size={size} color={color} />
-            )
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="person" size={20} color={color} />
+            ),
+            tabBarBadge: 3,
           }}
         />
         
