@@ -13,6 +13,22 @@ import { useState } from 'react';
 export default function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const nextErrors = {};
+
+    if (!username.trim()) {
+      nextErrors.username = 'Username is required';
+    }
+
+    if (!password.trim()) {
+      nextErrors.password = 'Password is required';
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
 
   return (
     <KeyboardAvoidingView 
@@ -29,6 +45,9 @@ export default function App() {
           value={username}
           onChangeText={setUsername}
         />
+        {errors.username ? (
+          <Text style={styles.errorText}>{errors.username}</Text>
+        ) : null}
         <Text style={styles.label}>Password</Text>
         <TextInput
           style={styles.input}
@@ -37,7 +56,10 @@ export default function App() {
           value={password}
           onChangeText={setPassword}
         />
-        <Button title="Login" onPress={() => {}} />
+        {errors.password ? (
+          <Text style={styles.errorText}>{errors.password}</Text>
+        ) : null}
+        <Button title="Login" onPress={validateForm} />
       </View>
     </KeyboardAvoidingView>
   );
@@ -81,5 +103,9 @@ const styles = StyleSheet.create({
     height: 400,
     alignSelf: 'center',
     marginBottom: 50,
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
   },
 });
