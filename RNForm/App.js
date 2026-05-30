@@ -1,85 +1,65 @@
-import {
-  StyleSheet,
-  View,
-  StatusBar,
-  SafeAreaView,
-  TextInput,
-  Text,
-  Switch,
-} from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useState } from 'react';
 
 export default function App() {
-  const [name, setName] = useState('');
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const containerStyle = [styles.container, isDarkMode ? styles.containerDark : styles.containerLight];
-  const textStyle = [styles.text, isDarkMode ? styles.textDark : styles.textLight];
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
-    <SafeAreaView style={containerStyle}>
-      <TextInput
-        style={styles.input}
-        value={name}
-        onChangeText={setName}
-        placeholder="email@example.com"
-        autoCorrect={false}
-        autoCapitalize="none"
-        keyboardType="twitter"
-      />
-      <TextInput style={styles.multilineText} placeholder="message" multiline />
-      <Text style={textStyle}>My name is {name}</Text>
-      <View style={styles.switchContainer}>
-        <Text style={textStyle}>Dark Mode</Text>
-        <Switch
-          value={isDarkMode}
-          onValueChange={() => setIsDarkMode((previousState) => !previousState)}
-          trackColor={{ false: '#767577', true: 'lightblue' }}
-          thumbColor="#f4f3f4"
+    <View style={styles.container}>
+      <View style={styles.form}>
+        <Text style={styles.label}>Username</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your username"
+          value={username}
+          onChangeText={setUsername}
         />
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your password"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        <Button title="Login" onPress={() => {}} />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: '#f5f5f5',
   },
-  containerLight: {
-    backgroundColor: '#fff',
+  form: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
-  containerDark: {
-    backgroundColor: '#121212',
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+    fontWeight: 'bold',
   },
   input: {
     height: 40,
-    margin: 12,
-    padding: 10,
+    borderColor: '#ddd',
     borderWidth: 1,
-  },
-  text: {
-    fontSize: 30,
+    marginBottom: 15,
     padding: 10,
-  },
-  textLight: {
-    color: '#111',
-  },
-  textDark: {
-    color: '#f2f2f2',
-  },
-  multilineText: {
-    minHeight: 100,
-    textAlignVertical: "top",
-    margin: 12,
-    padding: 10,
-    borderWidth: 1,
-  },
-  switchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 12,
+    borderRadius: 5,
   },
 });
