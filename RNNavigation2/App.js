@@ -15,8 +15,13 @@ export default function App() {
           name="Dashboard" 
           component={DashboardScreen} 
           options={{
-            title: "My Dashboard",
-            drawerLabel: "Home Menu"
+            title: "My dashboard",
+            drawerLabel: "Dashboard label",
+            drawerActiveTintColor: "#333",
+            drawerActiveBackgroundColor: "lightblue",
+            drawerContentStyle: {
+              backgroundColor: "#c6cbef",
+            },
           }}
         />
         <Drawer.Screen 
