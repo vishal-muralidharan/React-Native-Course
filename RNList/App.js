@@ -17,6 +17,7 @@ export default function App() {
           );
         }}
         keyExtractor={(item) => item.id.toString()}
+        ItemSeparatorComponent={<View style={{ height: 16 }} />}
       />
       <StatusBar style="auto" />
     </SafeAreaView>
