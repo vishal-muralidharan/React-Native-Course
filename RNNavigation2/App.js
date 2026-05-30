@@ -1,18 +1,19 @@
-// 1. DOMException Polyfill (MUST BE LINE 1)
-if (typeof globalThis.DOMException === 'undefined') {
-  globalThis.DOMException = class DOMException extends Error {
-    constructor(message, name) {
-      super(message);
-      this.name = name || 'DOMException';
-    }
-  };
+import "./polyfill"; // Keep this to prevent the DOMException crash!
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import DashboardScreen from "./screens/DashboardScreen";
+import SettingsScreen from "./screens/SettingsScreen";
+
+const Drawer = createDrawerNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Dashboard" component={DashboardScreen} />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
 }
-
-// 2. Gesture Handler (MUST BE LINE 2)
-import 'react-native-gesture-handler';
-
-// 3. The rest of your imports...
-import * as React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
