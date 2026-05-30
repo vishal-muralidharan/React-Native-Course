@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
   container: {
     flexWrap: 'wrap',
     height: 300,
-    alignContent: 'stretch',
+   /*  rowGap: 10,
+    columnGap: 20, */
+    gap: 30,
     marginTop: 64,
     borderWidth: 6,
     borderColor: "red",
