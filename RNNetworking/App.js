@@ -1,4 +1,12 @@
-import { SafeAreaView, StatusBar, View, Text, FlatList, StyleSheet } from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 import { useEffect, useState } from 'react';
 
 export default function App() {
@@ -24,7 +32,16 @@ export default function App() {
     fetchData();
   }, []);
 
-  const emptyStateText = isLoading ? 'Loading...' : 'No Posts Found';
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading...</Text>
+      </SafeAreaView>
+    );
+  }
+
+  const emptyStateText = 'No Posts Found';
 
   return (
     <SafeAreaView style={styles.container}>
@@ -57,6 +74,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
     paddingTop: StatusBar.currentHeight,
+  },
+  loadingContainer: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    paddingTop: StatusBar.currentHeight,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   listContainer: {
     flex: 1,
