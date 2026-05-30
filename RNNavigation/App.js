@@ -12,8 +12,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="About" component={AboutScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} initialParams={{ name: 'Guest' }} />
+        <Stack.Screen name="About" component={AboutScreen} initialParams={{ name: 'Guest' }} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

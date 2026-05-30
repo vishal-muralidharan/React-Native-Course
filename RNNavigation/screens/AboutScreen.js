@@ -1,9 +1,15 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-export default function AboutScreen() {
+export default function AboutScreen({ route, navigation }) {
+  const { name = 'Guest' } = route.params || {};
   return (
     <View style={styles.container}>
       <Text style={styles.text}>About Screen</Text>
+      <Text style={styles.text}>Name: {name}</Text>
+      <Button
+        title="Change Name to John and Go Back"
+        onPress={() => navigation.navigate('Home', { name: 'John' })}
+      />
     </View>
   );
 }
