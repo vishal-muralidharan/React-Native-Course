@@ -1,27 +1,21 @@
-import { useEffect, useState } from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 
 export default function App() {
-  const [dimensions, setDimensions] = useState({
-    window: Dimensions.get("window"),
-  });
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
-  useEffect(() => {
-    const subscription = Dimensions.addEventListener("change", ({ window }) => {
-      setDimensions({ window });
-    });
+  const boxSize = {
+    width: windowWidth > 500 ? "70%" : "90%",
+    height: windowHeight > 600 ? "60%" : "90%",
+  };
 
-    return () => subscription?.remove();
-  }, []);
-
-  const { window } = dimensions;
-  const windowWidth = window.width;
-  const windowHeight = window.height;
+  const textSize = {
+    fontSize: windowWidth > 500 ? 50 : 24,
+  };
 
   return (
     <View style={styles.container}>
-      <View style={styles.box}>
-        <Text style={styles.text}>Welcome!</Text>
+      <View style={[styles.box, boxSize]}>
+        <Text style={[styles.text, textSize]}>Welcome!</Text>
       </View>
     </View>
   );
@@ -35,13 +29,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   box: {
-    width: windowWidth > 500 ? "70%" : "90%",
-    height: windowHeight > 600 ? "60%" : "90%",
     backgroundColor: "lightblue",
     alignItems: "center",
     justifyContent: "center",
   },
   text: {
-    fontSize: windowWidth > 500 ? 50 : 24,
+    // fontSize is set dynamically via inline style
   },
 });
