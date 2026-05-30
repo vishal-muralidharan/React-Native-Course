@@ -92,6 +92,11 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
+      {error ? (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{error}</Text>
+        </View>
+      ) : null}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -113,7 +118,6 @@ export default function App() {
         </Pressable>
       </View>
       <View style={styles.listContainer}>
-        {error ? <Text style={styles.errorText}>{error}</Text> : null}
         <FlatList
           data={postList}
           keyExtractor={(item) => String(item.id)}
@@ -207,8 +211,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 12,
   },
+  errorContainer: {
+    backgroundColor: '#ffc0cb',
+    padding: 16,
+    borderRadius: 8,
+    borderWidth: 1,
+    marginHorizontal: 16,
+    marginBottom: 12,
+    alignItems: 'center',
+  },
   errorText: {
-    color: 'red',
-    marginBottom: 8,
+    color: '#d8000c',
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
