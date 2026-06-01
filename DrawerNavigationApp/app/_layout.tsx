@@ -4,26 +4,38 @@ import { Drawer } from "expo-router/drawer";
 export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Drawer>
+      <Drawer
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#ffffff",
+          },
+          headerTintColor: "#8b5cf6",
+          drawerStyle: {
+            backgroundColor: "#ffffff",
+          },
+          drawerActiveTintColor: "#8b5cf6",
+          drawerInactiveTintColor: "#64748b",
+        }}
+      >
         <Drawer.Screen
           name="index"
           options={{
-            drawerLabel: "Home",
-            title: "Overview",
+            title: "Home title",
+            drawerLabel: "Home label",
           }}
         />
         <Drawer.Screen
           name="dashboard"
           options={{
-            drawerLabel: "Dashboard",
-            title: "Dashboard",
+            title: "Dashboard title",
+            drawerLabel: "Dashboard label",
           }}
         />
         <Drawer.Screen
-          name="setting"
+          name="settings"
           options={{
-            drawerLabel: "Settings",
-            title: "Settings",
+            title: "Settings title",
+            drawerLabel: "Settings label",
           }}
         />
       </Drawer>
