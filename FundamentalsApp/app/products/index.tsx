@@ -6,17 +6,9 @@ export default function ProductList() {
   return (
     <View style={styles.container}>
       <Text>Products</Text>
-      <Link href="/products/1">Product 1</Link>
-      <Link href="/products/2">Product 2</Link>
-      <Link href="/products/3">Product 3</Link>
-      
-      <Link href="/products/best-sellers/playstation-5">
-        PlayStation 5 (Best Sellers)
-      </Link>
-      <Link href="/products/deals/black-friday/playstation-5">
-        PlayStation 5 (Deals)
-      </Link>
-      <Link href="/products/search/playstation-5">PlayStation 5 (Search)</Link>
+      <Link href="./1" relativeToDirectory>Product 1</Link>
+      <Link href="./2" relativeToDirectory>Product 2</Link>
+      <Link href="./3" relativeToDirectory>Product 3</Link>
     </View>
   );
 }
