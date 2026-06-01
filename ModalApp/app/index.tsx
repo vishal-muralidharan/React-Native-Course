@@ -13,6 +13,7 @@ export default function Index() {
     >
       <Text>Edit app/index.tsx to edit this screen.</Text>
       <Link href="/modal">Open modal</Link>
+      <Link href="/webmodal">Open web modal</Link>
     </View>
   );
 }

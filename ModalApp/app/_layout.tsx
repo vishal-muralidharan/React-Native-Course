@@ -8,6 +8,15 @@ export default function RootLayout() {
         name="modal"
         options={{ title: "Modal", presentation: "modal" }}
       />
+      <Stack.Screen
+        name="webmodal"
+        options={{
+          title: "Web Modal",
+          presentation: "transparentModal",
+          animation: "fade",
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 }
